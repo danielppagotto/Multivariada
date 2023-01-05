@@ -1,0 +1,37 @@
+---
+title: "Exercícios - Capítulo 2"
+format: html
+editor: visual
+---
+
+O presente documento traz a relação de exercícios desenvolvidos para a disciplina de Métodos de Análise Multivariada do Programa de Pós-Graduação em Administração da UnB.
+
+**Aluno: Daniel do Prado Pagotto**
+
+Carregando os pacotes necessários. O pacote `HSAUR2` especificamente tem muitas das bases usadas nos exercícios.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+library(HSAUR2)
+
+```
+
+# Exercício 2.1
+
+*Use the bivariate boxplot on the scatterplot of each pair of variables
+in the air pollution data to identify any outliers. Calculate the correlation
+between each pair of variables using all the data and the data with any
+identified outliers removed. Comment on the results*
+
+Primeiramente, vamos acessar os dados da base air pollution. 
+
+```{r}
+
+airpollution <- HSAUR2::USairpollution
+
+glimpse(airpollution)
+
+```
+
