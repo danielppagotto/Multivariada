@@ -1,6 +1,6 @@
 # Análise Multivariada de Dados 
 
-Autor: Daniel Pagotto
+Aluno: Daniel do Prado Pagotto
 
 O presente documento possui uma relação de exercícios da disciplina de Análise Multivariada, do PPGA-UnB, semestre 2/2022. 
 
