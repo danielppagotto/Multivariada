@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exercícios - Capítulo 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="cap_1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cap_1_files/libs/quarto-html/quarto.js"></script>
+<script src="cap_1_files/libs/quarto-html/popper.min.js"></script>
+<script src="cap_1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cap_1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cap_1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cap_1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cap_1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cap_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cap_1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="cap_1_files/libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="cap_1_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="cap_1_files/libs/datatables-binding-0.19/datatables.js"></script>
+<script src="cap_1_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="cap_1_files/libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="cap_1_files/libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="cap_1_files/libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="cap_1_files/libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="cap_1_files/libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercícios - Capítulo 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>O presente documento traz a relação de exercícios desenvolvidos para a disciplina de Métodos de Análise Multivariada do Programa de Pós-Graduação em Administração da UnB.</p>
+<p><strong>Aluno: Daniel do Prado Pagotto</strong></p>
+<p>Carregando os pacotes necessários. O pacote <code>HSAUR2</code> especificamente tem muitas das bases usadas nos exercícios.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HSAUR2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercício-1.1" class="level1">
+<h1>Exercício 1.1</h1>
+<p><em>Find the correlation matrix and covariance matrix of the data in Table 1.1.</em></p>
+<p>Para o presente exercício vamos precisar construir o dataset, pois não tem no pacote <code>HSAUR2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Male"</span>,<span class="st">"Female"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>hypo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">individual =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sex =</span> <span class="fu">rep</span>(a, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">43</span>, <span class="dv">22</span>, <span class="dv">86</span>, <span class="dv">60</span>, <span class="dv">16</span>, <span class="cn">NA</span>, <span class="dv">43</span>, <span class="dv">22</span>, <span class="dv">80</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">IQ =</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="cn">NA</span>, <span class="dv">135</span>, <span class="dv">150</span>, <span class="dv">92</span>, <span class="dv">130</span>, <span class="dv">150</span>, <span class="cn">NA</span>, <span class="dv">84</span>, <span class="dv">70</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">depression =</span> <span class="fu">c</span>(<span class="st">"Yes"</span>,<span class="st">"No"</span>,<span class="st">"No"</span>,<span class="st">"No"</span>,<span class="st">"Yes"</span>,<span class="st">"Yes"</span>,<span class="st">"Yes"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Yes"</span>,<span class="st">"No"</span>,<span class="st">"No"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">health =</span> <span class="fu">c</span>(<span class="st">"Very good"</span>, <span class="st">"Very good"</span>, <span class="st">"Average"</span>, <span class="st">"Very poor"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Good"</span>, <span class="st">"Good"</span>, <span class="st">"Very good"</span>, <span class="st">"Average"</span>, <span class="st">"Average"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Good"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">150</span>, <span class="dv">160</span>, <span class="dv">135</span>, <span class="dv">140</span>, <span class="dv">110</span>, <span class="dv">110</span>, <span class="dv">120</span>, <span class="dv">120</span>, <span class="dv">105</span>, <span class="dv">100</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(hypo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-287dcfbc8ff1e41f8127" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-287dcfbc8ff1e41f8127">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],["Male","Male","Male","Male","Male","Female","Female","Female","Female","Female"],[21,43,22,86,60,16,null,43,22,80],[120,null,135,150,92,130,150,null,84,70],["Yes","No","No","No","Yes","Yes","Yes","Yes","No","No"],["Very good","Very good","Average","Very poor","Good","Good","Very good","Average","Average","Good"],[150,160,135,140,110,110,120,120,105,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>individual<\/th>\n      <th>sex<\/th>\n      <th>age<\/th>\n      <th>IQ<\/th>\n      <th>depression<\/th>\n      <th>health<\/th>\n      <th>weight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,4,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Primeiro vamos calcular a matriz de <strong>covariância</strong>. As variáveis categóricas serão excluídas para esse fim.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(hypo[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"IQ"</span>,<span class="st">"weight"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       age IQ   weight
+age     NA NA       NA
+IQ      NA NA       NA
+weight  NA NA 411.1111</code></pre>
+</div>
+</div>
+<p>Vamos calcular a matriz de <strong>correlação</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hypo[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"IQ"</span>,<span class="st">"weight"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       age IQ weight
+age      1 NA     NA
+IQ      NA  1     NA
+weight  NA NA      1</code></pre>
+</div>
+</div>
+</section>
+<section id="exercício-1.2" class="level1">
+<h1>Exercício 1.2</h1>
+<p><em>Fill in the missing values in Table 1.1 with appropriate mean values, and recalculate the correlation matrix of the data.</em></p>
+<p>Primeiro vamos trocar os valores de NA pela média usando a função <code>replace_na</code> do <code>tidyverse</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hypo2 <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  hypo <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">replace_na</span>(age, <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IQ =</span> <span class="fu">replace_na</span>(IQ, <span class="fu">mean</span>(IQ, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(hypo2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-23c13f0e0728f6deb700" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-23c13f0e0728f6deb700">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],["Male","Male","Male","Male","Male","Female","Female","Female","Female","Female"],[21,43,22,86,60,16,43.6666666666667,43,22,80],[120,116.375,135,150,92,130,150,116.375,84,70],["Yes","No","No","No","Yes","Yes","Yes","Yes","No","No"],["Very good","Very good","Average","Very poor","Good","Good","Very good","Average","Average","Good"],[150,160,135,140,110,110,120,120,105,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>individual<\/th>\n      <th>sex<\/th>\n      <th>age<\/th>\n      <th>IQ<\/th>\n      <th>depression<\/th>\n      <th>health<\/th>\n      <th>weight<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,4,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Agora basta recalcular as matrizes de covariância e correlação.</p>
+<p><strong>Covariância</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(hypo2[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"IQ"</span>,<span class="st">"weight"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             age       IQ    weight
+age    622.00000 -91.2037 -52.59259
+IQ     -91.20370 733.3194 286.80556
+weight -52.59259 286.8056 411.11111</code></pre>
+</div>
+</div>
+<p><strong>Correlação</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hypo2[,<span class="fu">c</span>(<span class="st">"age"</span>,<span class="st">"IQ"</span>,<span class="st">"weight"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              age         IQ     weight
+age     1.0000000 -0.1350426 -0.1040039
+IQ     -0.1350426  1.0000000  0.5223497
+weight -0.1040039  0.5223497  1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="exercício-1.3" class="level1">
+<h1>Exercício 1.3</h1>
+<p><em>Examine both the normal probability plots of each variable in the archaeology data in Table 1.3 and the chi-square plot of the data. Do the plots suggest anything unusual about the data?</em></p>
+<p>Primeiro vamos acessar os dados e realizar uma breve inspeção.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pottery <span class="ot">&lt;-</span> HSAUR2<span class="sc">::</span>pottery</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pottery)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 45
+Columns: 10
+$ Al2O3 &lt;dbl&gt; 18.8, 16.9, 18.2, 16.9, 17.8, 18.8, 16.5, 18.0, 15.8, 14.6, 13.7~
+$ Fe2O3 &lt;dbl&gt; 9.52, 7.33, 7.64, 7.29, 7.24, 7.45, 7.05, 7.42, 7.15, 6.87, 5.83~
+$ MgO   &lt;dbl&gt; 2.00, 1.65, 1.82, 1.56, 1.83, 2.06, 1.81, 2.06, 1.62, 1.67, 1.50~
+$ CaO   &lt;dbl&gt; 0.79, 0.84, 0.77, 0.76, 0.92, 0.87, 1.73, 1.00, 0.71, 0.76, 0.66~
+$ Na2O  &lt;dbl&gt; 0.40, 0.40, 0.40, 0.40, 0.43, 0.25, 0.33, 0.28, 0.38, 0.33, 0.13~
+$ K2O   &lt;dbl&gt; 3.20, 3.05, 3.07, 3.05, 3.12, 3.26, 3.20, 3.37, 3.25, 3.06, 2.25~
+$ TiO2  &lt;dbl&gt; 1.01, 0.99, 0.98, 1.00, 0.93, 0.98, 0.95, 0.96, 0.93, 0.91, 0.75~
+$ MnO   &lt;dbl&gt; 0.077, 0.067, 0.087, 0.063, 0.061, 0.072, 0.066, 0.072, 0.062, 0~
+$ BaO   &lt;dbl&gt; 0.015, 0.018, 0.014, 0.019, 0.019, 0.017, 0.019, 0.017, 0.017, 0~
+$ kiln  &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2~</code></pre>
+</div>
+</div>
+<p>Primeiro, vamos olhar o gráficos de densidade de cada variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>normalplot <span class="ot">&lt;-</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(a){</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        pottery <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> a)) <span class="sc">+</span> <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(pottery <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>kiln), normalplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Al2O3</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Fe2O3</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$MgO</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$CaO</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Na2O</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$K2O</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$TiO2</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$MnO</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$BaO</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-18-9.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Observa-se que, com exceção da variável BaO, todas as demais variáveis não aparentam ter distribuição normal.</p>
+<p>Agora vamos aplicar o gráfico qui-quadrado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">colnames</span>(pottery[,<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>]), </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">qqnorm</span>(pottery[[x]], <span class="at">main =</span> x)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">qqline</span>(pottery[[x]])</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                    }</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_1_files/figure-html/unnamed-chunk-20-9.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Os gráficos de qui-quadrado convergem com os resultados dos gráficos de densidade.</p>
+</section>
+<section id="exercício-1.4" class="level1">
+<h1>Exercício 1.4</h1>
+<p><em>Convert the covariance matrix given below into the corresponding correlation matrix.</em></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
