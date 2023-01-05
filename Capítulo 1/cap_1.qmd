@@ -151,3 +151,11 @@ Os gráficos de qui-quadrado convergem com os resultados dos gráficos de densid
 
 *Convert the covariance matrix given below into the corresponding
 correlation matrix.*
+
+
+```{r}
+
+
+
+```
+
