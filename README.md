@@ -6,4 +6,4 @@ O presente documento possui uma relação de exercícios da disciplina de Análi
 
 [Capítulo 1](https://htmlpreview.github.io/?https://github.com/danielppagotto/Multivariada/blob/main/Cap%C3%ADtulo%201/cap_1.html)
 
-[teste]([https://github.com/danielppagotto/Multivariada/tree/main/Cap%C3%ADtulo%201](https://github.com/danielppagotto/Multivariada/blob/main/Cap%C3%ADtulo%201/cap_1.html))
+[teste](https://github.com/danielppagotto/Multivariada/blob/main/Cap%C3%ADtulo%201/cap_1.html)
