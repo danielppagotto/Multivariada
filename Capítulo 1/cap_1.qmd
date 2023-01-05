@@ -152,10 +152,26 @@ Os gráficos de qui-quadrado convergem com os resultados dos gráficos de densid
 *Convert the covariance matrix given below into the corresponding
 correlation matrix.*
 
+A **matriz de covariância** é expressa a seguir
 
 ```{r}
 
+matriz <- 
+  cbind(c(3.8778,2.8110,3.1480,3.5062),
+      c(2.8110,2.1210,2.2669,2.5690),
+      c(3.1480,2.2669,2.6550,2.8341),
+      c(3.5062,2.5690,2.8341,3.2352))
 
+matriz
+
+
+```
+
+A **matriz de correlação** correspondente pode ser obtida usando a função `cov2cor`.
+
+```{r}
+
+cov2cor(matriz)
 
 ```
 
