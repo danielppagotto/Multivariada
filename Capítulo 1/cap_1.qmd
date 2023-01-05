@@ -175,3 +175,5 @@ cov2cor(matriz)
 
 ```
 
+# Exercício 1.5
+
