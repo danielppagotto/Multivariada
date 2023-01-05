@@ -177,3 +177,29 @@ cov2cor(matriz)
 
 # Exercício 1.5
 
+*For the small set of (10 × 5) multivariate data given below, find
+the (10 × 10) Euclidean distance matrix for the rows of the matrix. An
+alternative to Euclidean distance that might be used in some cases is what is known as city block distance (think New York). Write some R code to
+calculate the city block distance matrix for the data.*
+
+Vamos inserir os dados. Em sequência aplicamos a função `dist` para calcular a distância euclidiana. Importante mencionar a necessidade de padronizar os dados usando a função `scale`. 
+
+```{r}
+
+matriz2<- 
+  rbind(c(3,6,4,0,7),
+        c(4,2,7,4,6),
+        c(4,0,3,1,5),
+        c(6,2,6,1,1),
+        c(1,6,2,1,4),
+        c(5,1,2,0,2),
+        c(1,1,2,6,1),
+        c(1,1,5,4,4),
+        c(7,0,1,3,3),
+        c(3,3,0,5,1))
+
+
+dist(scale(matriz2))
+
+```
+
