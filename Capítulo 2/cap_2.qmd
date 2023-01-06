@@ -14,7 +14,10 @@ Carregando os pacotes necessários. O pacote `HSAUR2` especificamente tem muitas
 #| warning: false
 
 library(tidyverse)
+library(ggExtra)
 library(HSAUR2)
+library(psych)
+library(WVPlots)
 
 ```
 
@@ -29,9 +32,225 @@ Primeiramente, vamos acessar os dados da base air pollution.
 
 ```{r}
 
-airpollution <- HSAUR2::USairpollution
+airpollution <- HSAUR2::USairpollution 
 
 glimpse(airpollution)
 
 ```
+
+Antes de tudo, vamos verificar a matriz de correlação de todo o dataframe, sem excluir outliers. 
+
+```{r}
+#| warning: false
+#| results: hide
+
+GGally::ggpairs(airpollution)
+
+```
+Agora vamos criar os boxplot bivariados para cada par de variáveis
+
+https://r-charts.com/correlation/scatter-plot-marginal-boxplots/
+
+```{r}
+
+plot21 <- function(a, b){
+  p <- airpollution %>% 
+      ggplot(aes(x = a, y = b, label = rownames(airpollution))) + 
+      geom_point() + 
+      geom_label() 
+
+  ggMarginal(p, type = "boxplot")
+}
+
+plot21(a = airpollution$manu, b = airpollution$temp)
+
+```
+
+Para as presentes variáveis, *Chicago*, *Philadelhia*, *Miami* e Detroit parecem ser algumas das cidades outliers. Vamos finalmente plotar o boxplot bivariado usando a função `scatterHist` do pacote `psych`. 
+
+
+```{r}
+
+scatterHist(x = airpollution$manu, y = airpollution$temp)
+
+```
+Outra opção é usar o função `geom_density_2d()`
+
+```{r}
+
+airpollution %>% 
+  ggplot(aes(x = manu, y = temp, label = rownames(airpollution))) + 
+  geom_label() + geom_density_2d() + theme_minimal() 
+
+```
+Necessário repetir o mesmo processo para os demais pares de variáveis. 
+
+### Variáveis manu e SO2
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$SO2)
+
+scatterHist(x = airpollution$manu, y = airpollution$SO2)
+
+```
+
+Para o presente caso, *Providence* parece ser um outlier também, além de *Chicago*.
+
+### Variáveis manu e popul
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$popul)
+
+scatterHist(x = airpollution$manu, y = airpollution$popul)
+
+```
+
+Aqui estão *Chicago* e *Philadelphia*
+
+### Variáveis manu e wind 
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$wind)
+
+scatterHist(x = airpollution$manu, y = airpollution$wind)
+
+```
+
+Aqui estão *Chicago*, *Philadelphia*, *Buffalo* e *Wichita*.
+
+### Variáveis manu e precip 
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$precip)
+
+scatterHist(x = airpollution$manu, y = airpollution$precip)
+
+```
+
+Aqui temos *Chicago* e *Philadelphia*
+
+### Variáveis manu e predays 
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$predays)
+
+scatterHist(x = airpollution$manu, y = airpollution$predays)
+
+```
+
+Mais uma vez *Chicago* e *Philadelphia* 
+
+Vamos inspecionar as demais variáveis de uma vez 
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$temp)
+
+scatterHist(x = airpollution$SO2, y = airpollution$temp)
+```
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$popul)
+
+scatterHist(x = airpollution$SO2, y = airpollution$popul)
+
+```
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$wind)
+
+scatterHist(x = airpollution$SO2, y = airpollution$wind)
+
+```
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$precip)
+
+scatterHist(x = airpollution$SO2, y = airpollution$precip)
+```
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$predays)
+
+scatterHist(x = airpollution$SO2, y = airpollution$predays)
+```
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$popul)
+
+scatterHist(x = airpollution$temp, y = airpollution$popul)
+```
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$wind)
+
+scatterHist(x = airpollution$temp, y = airpollution$wind)
+```
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$precip)
+
+scatterHist(x = airpollution$temp, y = airpollution$precip)
+```
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$precip)
+
+scatterHist(x = airpollution$temp, y = airpollution$predays)
+```
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$predays)
+
+scatterHist(x = airpollution$temp, y = airpollution$predays)
+
+```
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$wind)
+
+scatterHist(x = airpollution$popul, y = airpollution$wind)
+
+```
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$precip)
+
+scatterHist(x = airpollution$popul, y = airpollution$precip)
+
+```
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$predays)
+
+scatterHist(x = airpollution$popul, y = airpollution$predays)
+
+```
+
+```{r}
+
+plot21(a = airpollution$wind, b = airpollution$precip)
+
+scatterHist(x = airpollution$wind, y = airpollution$precip)
+
+
+```
+
+
+
+```{r}
+
+
+plot21(a = airpollution$precip, b = airpollution$predays)
+
+scatterHist(x = airpollution$precip, y = airpollution$predays)
+
+
+```
+
 
