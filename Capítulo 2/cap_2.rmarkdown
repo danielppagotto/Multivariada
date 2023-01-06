@@ -1,0 +1,416 @@
+---
+title: "Exercícios - Capítulo 2"
+format: html
+editor: visual
+---
+
+
+O presente documento traz a relação de exercícios desenvolvidos para a disciplina de Métodos de Análise Multivariada do Programa de Pós-Graduação em Administração da UnB.
+
+**Aluno: Daniel do Prado Pagotto**
+
+Carregando os pacotes necessários. O pacote `HSAUR2` especificamente tem muitas das bases usadas nos exercícios.
+
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+library(ggExtra)
+library(HSAUR2)
+library(psych)
+library(roperators)
+library(patchwork)
+
+```
+
+
+# Exercício 2.1
+
+*Use the bivariate boxplot on the scatterplot of each pair of variables
+in the air pollution data to identify any outliers. Calculate the correlation
+between each pair of variables using all the data and the data with any
+identified outliers removed. Comment on the results*
+
+Primeiramente, vamos acessar os dados da base air pollution. 
+
+
+```{r}
+
+airpollution <- HSAUR2::USairpollution 
+
+glimpse(airpollution)
+
+```
+
+
+Antes de tudo, vamos verificar a matriz de correlação de todo o dataframe, sem excluir outliers. 
+
+
+```{r}
+#| warning: false
+#| results: hide
+
+GGally::ggpairs(airpollution)
+
+cor1 <- GGally::ggpairs(airpollution)
+
+```
+
+Agora vamos criar os boxplot bivariados para cada par de variáveis
+
+https://r-charts.com/correlation/scatter-plot-marginal-boxplots/
+
+
+```{r}
+
+plot21 <- function(a, b){
+  p <- airpollution %>% 
+      ggplot(aes(x = a, y = b, label = rownames(airpollution))) + 
+      geom_point() + 
+      geom_label() 
+
+  ggMarginal(p, type = "boxplot")
+}
+
+plot21(a = airpollution$manu, b = airpollution$temp)
+
+```
+
+
+Para as presentes variáveis, *Chicago*, *Philadelhia*, *Miami* e Detroit parecem ser algumas das cidades outliers. Vamos finalmente plotar o boxplot bivariado usando a função `scatterHist` do pacote `psych`. 
+
+
+
+```{r}
+
+scatterHist(x = airpollution$manu, y = airpollution$temp)
+
+```
+
+Outra opção é usar o função `geom_density_2d()`
+
+
+```{r}
+
+airpollution %>% 
+  ggplot(aes(x = manu, y = temp, label = rownames(airpollution))) + 
+  geom_label() + geom_density_2d() + theme_minimal() 
+
+```
+
+Necessário repetir o mesmo processo para os demais pares de variáveis. 
+
+### Variáveis manu e SO2
+
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$SO2)
+
+scatterHist(x = airpollution$manu, y = airpollution$SO2)
+
+```
+
+
+Para o presente caso, *Providence* parece ser um outlier também, além de *Chicago*.
+
+### Variáveis manu e popul
+
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$popul)
+
+scatterHist(x = airpollution$manu, y = airpollution$popul)
+
+```
+
+
+Aqui estão *Chicago* e *Philadelphia*
+
+### Variáveis manu e wind 
+
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$wind)
+
+scatterHist(x = airpollution$manu, y = airpollution$wind)
+
+```
+
+
+Aqui estão *Chicago*, *Philadelphia*, *Buffalo* e *Wichita*.
+
+### Variáveis manu e precip 
+
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$precip)
+
+scatterHist(x = airpollution$manu, y = airpollution$precip)
+
+```
+
+
+Aqui temos *Chicago* e *Philadelphia*
+
+### Variáveis manu e predays 
+
+
+```{r}
+
+plot21(a = airpollution$manu, b = airpollution$predays)
+
+scatterHist(x = airpollution$manu, y = airpollution$predays)
+
+```
+
+
+Mais uma vez *Chicago* e *Philadelphia* 
+
+Vamos inspecionar as demais variáveis de uma vez 
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$temp)
+
+scatterHist(x = airpollution$SO2, y = airpollution$temp)
+```
+
+
+Aqui temos *Miami*, *Providence* e *Chicago*.
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$popul)
+
+scatterHist(x = airpollution$SO2, y = airpollution$popul)
+
+```
+
+
+Aqui temos *Philadelphia*, *Providence* e *Chicago*.
+
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$wind)
+
+scatterHist(x = airpollution$SO2, y = airpollution$wind)
+
+```
+
+
+Aqui temos *Buffalo*, *Wichita*, *Phoenix*, *Providence* e *Chicago*.
+
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$precip)
+
+scatterHist(x = airpollution$SO2, y = airpollution$precip)
+```
+
+
+Aqui temos *Miami*, *Providence* e *Chicago*.
+
+
+
+```{r}
+plot21(a = airpollution$SO2, b = airpollution$predays)
+
+scatterHist(x = airpollution$SO2, y = airpollution$predays)
+```
+
+
+Aqui temos *Buffalo*, *Seattle*, *Providence* e *Chicago*.
+
+
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$popul)
+
+scatterHist(x = airpollution$temp, y = airpollution$popul)
+```
+
+
+Aqui temos *Miami*, *Houston*, *Phoenix* e *Chicago*.
+
+
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$wind)
+
+scatterHist(x = airpollution$temp, y = airpollution$wind)
+```
+
+
+Aqui temos *Miami*, *Dallas*, *Wichita*, *Houston*, *Charleston* e *Phoenix*.
+
+
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$precip)
+
+scatterHist(x = airpollution$temp, y = airpollution$precip)
+```
+
+
+Aqui temos *Miami*, *Albuquerque* e *Phoenix*.
+
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$precip)
+
+scatterHist(x = airpollution$temp, y = airpollution$predays)
+```
+
+
+Aqui temos *Miami*, *Albuquerque* e *Phoenix*.
+
+
+```{r}
+plot21(a = airpollution$temp, b = airpollution$predays)
+
+scatterHist(x = airpollution$temp, y = airpollution$predays)
+
+```
+
+
+Aqui temos *Miami*, *Albuquerque* e *Phoenix*.
+
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$wind)
+
+scatterHist(x = airpollution$popul, y = airpollution$wind)
+
+```
+
+
+Aqui temos *Wichita*, *Philadelphia*, *Wichita*, *Buffalo* e *Chicago*.
+
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$precip)
+
+scatterHist(x = airpollution$popul, y = airpollution$precip)
+
+```
+
+
+Aqui temos *Chicago*, *Albuquerque*, *Philadelphia* e *Phoenix*.
+
+
+```{r}
+plot21(a = airpollution$popul, b = airpollution$predays)
+
+scatterHist(x = airpollution$popul, y = airpollution$predays)
+
+```
+
+
+Aqui temos *Chicago*, *Philadelphia* e *Phoenix*.
+
+
+```{r}
+
+plot21(a = airpollution$wind, b = airpollution$precip)
+
+scatterHist(x = airpollution$wind, y = airpollution$precip)
+
+
+```
+
+
+Aqui temos *Buffalo*, *Wichita*, *Albuquerque*, *Denver*, *Charleston* e *Phoenix*.
+
+
+```{r}
+
+
+plot21(a = airpollution$precip, b = airpollution$predays)
+
+scatterHist(x = airpollution$precip, y = airpollution$predays)
+
+```
+
+
+Aqui temos *Buffalo*, *Seattle*, *Albuquerque* e *Phoenix*.
+
+Seguindo para a última orientação do exercício, vamos excluir as cidades consideradas *outliers*. Haverá a exclusão de 13 observações
+
+
+```{r}
+
+city_vector <- c("Albuquerque","Chicago","Phoenix",
+                 "Buffalo","Seattle","Wichita","Denver",
+                 "Charleston","Miami","Dallas","Houston",
+                 "Philadelphia","Providence")
+
+airpollution_no <- 
+  airpollution %>% 
+  rownames_to_column(var = "city") %>% 
+  filter(city %ni% city_vector)
+
+```
+
+
+Agora vamos fazer a matriz de correlação novamente desta nova base. 
+
+
+```{r}
+#| warning: false
+#| results: hide
+
+GGally::ggpairs(airpollution_no %>% select(-city))
+
+cor2 <- GGally::ggpairs(airpollution_no %>% select(-city))
+
+
+```
+
+Vamos comparar os dois 
+
+
+```{r}
+#| warning: false
+#| results: hide
+
+cor1 
+```
+
+```{r}
+#| warning: false
+#| results: hide
+
+cor2
+```
+
+
+Observa-se que o grau de correlação entre algumas variáveis aumenta enquanto para algumas há uma redução. 
+
+# Exercício 2.2
+
+*Compare the chi-plots with the corresponding scatterplots for each pair of variables in the air pollution data. Do you think that there is any advantage in the former?*
+
+
+# Exercício 2.3
+
+*Construct a scatterplot matrix of the body measurements data that has the appropriate boxplot on the diagonal panels and bivariate boxplots on the other panels. Compare the plot with Figure 2.17, and say which diagram you find more informative about the data.*
+
+# Exercício 2.4
+
+*Construct a further scatterplot matrix of the body measurements data that labels each point in a panel with the gender of the individual, and plot on each scatterplot the separate estimated bivariate densities for men and women.* 
+
+
+# Exercício 2.5 
+
+*Construct a scatterplot matrix of the chemical composition of Romano-British pottery given in Chapter 1 (Table 1.3), identifying each unit by its kiln number and showing the estimated bivariate density on each panel. What does the resulting diagram tell you?* 
+
+# Exercício 2.6
+
+*Construct a bubble plot of the earthquake data using latitude and longitude as the scatterplot and depth as the circles, with greater depths giving smaller circles. In addition, divide the magnitudes into three equal ranges and label the points in your bubble plot with a different symbol depending on the magnitude group into which the point falls*
