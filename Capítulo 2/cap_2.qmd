@@ -24,12 +24,9 @@ library(patchwork)
 
 # Exercício 2.1
 
-*Use the bivariate boxplot on the scatterplot of each pair of variables
-in the air pollution data to identify any outliers. Calculate the correlation
-between each pair of variables using all the data and the data with any
-identified outliers removed. Comment on the results*
+*Use the bivariate boxplot on the scatterplot of each pair of variables in the air pollution data to identify any outliers. Calculate the correlation between each pair of variables using all the data and the data with any identified outliers removed. Comment on the results*
 
-Primeiramente, vamos acessar os dados da base air pollution. 
+Primeiramente, vamos acessar os dados da base air pollution.
 
 ```{r}
 
@@ -39,7 +36,7 @@ glimpse(airpollution)
 
 ```
 
-Antes de tudo, vamos verificar a matriz de correlação de todo o dataframe, sem excluir outliers. 
+Antes de tudo, vamos verificar a matriz de correlação de todo o dataframe, sem excluir outliers.
 
 ```{r}
 #| warning: false
@@ -50,6 +47,7 @@ GGally::ggpairs(airpollution)
 cor1 <- GGally::ggpairs(airpollution)
 
 ```
+
 Agora vamos criar os boxplot bivariados para cada par de variáveis
 
 https://r-charts.com/correlation/scatter-plot-marginal-boxplots/
@@ -69,14 +67,14 @@ plot21(a = airpollution$manu, b = airpollution$temp)
 
 ```
 
-Para as presentes variáveis, *Chicago*, *Philadelhia*, *Miami* e Detroit parecem ser algumas das cidades outliers. Vamos finalmente plotar o boxplot bivariado usando a função `scatterHist` do pacote `psych`. 
-
+Para as presentes variáveis, *Chicago*, *Philadelhia*, *Miami* e Detroit parecem ser algumas das cidades outliers. Vamos finalmente plotar o boxplot bivariado usando a função `scatterHist` do pacote `psych`.
 
 ```{r}
 
 scatterHist(x = airpollution$manu, y = airpollution$temp)
 
 ```
+
 Outra opção é usar o função `geom_density_2d()`
 
 ```{r}
@@ -86,7 +84,8 @@ airpollution %>%
   geom_label() + geom_density_2d() + theme_minimal() 
 
 ```
-Necessário repetir o mesmo processo para os demais pares de variáveis. 
+
+Necessário repetir o mesmo processo para os demais pares de variáveis.
 
 ### Variáveis manu e SO2
 
@@ -112,7 +111,7 @@ scatterHist(x = airpollution$manu, y = airpollution$popul)
 
 Aqui estão *Chicago* e *Philadelphia*
 
-### Variáveis manu e wind 
+### Variáveis manu e wind
 
 ```{r}
 
@@ -124,7 +123,7 @@ scatterHist(x = airpollution$manu, y = airpollution$wind)
 
 Aqui estão *Chicago*, *Philadelphia*, *Buffalo* e *Wichita*.
 
-### Variáveis manu e precip 
+### Variáveis manu e precip
 
 ```{r}
 
@@ -136,7 +135,7 @@ scatterHist(x = airpollution$manu, y = airpollution$precip)
 
 Aqui temos *Chicago* e *Philadelphia*
 
-### Variáveis manu e predays 
+### Variáveis manu e predays
 
 ```{r}
 
@@ -146,9 +145,9 @@ scatterHist(x = airpollution$manu, y = airpollution$predays)
 
 ```
 
-Mais uma vez *Chicago* e *Philadelphia* 
+Mais uma vez *Chicago* e *Philadelphia*
 
-Vamos inspecionar as demais variáveis de uma vez 
+Vamos inspecionar as demais variáveis de uma vez
 
 ```{r}
 plot21(a = airpollution$SO2, b = airpollution$temp)
@@ -167,7 +166,6 @@ scatterHist(x = airpollution$SO2, y = airpollution$popul)
 
 Aqui temos *Philadelphia*, *Providence* e *Chicago*.
 
-
 ```{r}
 plot21(a = airpollution$SO2, b = airpollution$wind)
 
@@ -177,7 +175,6 @@ scatterHist(x = airpollution$SO2, y = airpollution$wind)
 
 Aqui temos *Buffalo*, *Wichita*, *Phoenix*, *Providence* e *Chicago*.
 
-
 ```{r}
 plot21(a = airpollution$SO2, b = airpollution$precip)
 
@@ -185,7 +182,6 @@ scatterHist(x = airpollution$SO2, y = airpollution$precip)
 ```
 
 Aqui temos *Miami*, *Providence* e *Chicago*.
-
 
 ```{r}
 plot21(a = airpollution$SO2, b = airpollution$predays)
@@ -195,7 +191,6 @@ scatterHist(x = airpollution$SO2, y = airpollution$predays)
 
 Aqui temos *Buffalo*, *Seattle*, *Providence* e *Chicago*.
 
-
 ```{r}
 plot21(a = airpollution$temp, b = airpollution$popul)
 
@@ -204,7 +199,6 @@ scatterHist(x = airpollution$temp, y = airpollution$popul)
 
 Aqui temos *Miami*, *Houston*, *Phoenix* e *Chicago*.
 
-
 ```{r}
 plot21(a = airpollution$temp, b = airpollution$wind)
 
@@ -212,7 +206,6 @@ scatterHist(x = airpollution$temp, y = airpollution$wind)
 ```
 
 Aqui temos *Miami*, *Dallas*, *Wichita*, *Houston*, *Charleston* e *Phoenix*.
-
 
 ```{r}
 plot21(a = airpollution$temp, b = airpollution$precip)
@@ -304,7 +297,7 @@ airpollution_no <-
 
 ```
 
-Agora vamos fazer a matriz de correlação novamente desta nova base. 
+Agora vamos fazer a matriz de correlação novamente desta nova base.
 
 ```{r}
 #| warning: false
@@ -316,7 +309,8 @@ cor2 <- GGally::ggpairs(airpollution_no %>% select(-city))
 
 
 ```
-Vamos comparar os dois 
+
+Vamos comparar os dois
 
 ```{r}
 #| warning: false
@@ -332,12 +326,11 @@ cor1
 cor2
 ```
 
-Observa-se que o grau de correlação entre algumas variáveis aumenta enquanto para algumas há uma redução. 
+Observa-se que o grau de correlação entre algumas variáveis aumenta enquanto para algumas há uma redução.
 
 # Exercício 2.2
 
 *Compare the chi-plots with the corresponding scatterplots for each pair of variables in the air pollution data. Do you think that there is any advantage in the former?*
-
 
 # Exercício 2.3
 
@@ -345,12 +338,11 @@ Observa-se que o grau de correlação entre algumas variáveis aumenta enquanto 
 
 # Exercício 2.4
 
-*Construct a further scatterplot matrix of the body measurements data that labels each point in a panel with the gender of the individual, and plot on each scatterplot the separate estimated bivariate densities for men and women.* 
+*Construct a further scatterplot matrix of the body measurements data that labels each point in a panel with the gender of the individual, and plot on each scatterplot the separate estimated bivariate densities for men and women.*
 
+# Exercício 2.5
 
-# Exercício 2.5 
-
-*Construct a scatterplot matrix of the chemical composition of Romano-British pottery given in Chapter 1 (Table 1.3), identifying each unit by its kiln number and showing the estimated bivariate density on each panel. What does the resulting diagram tell you?* 
+*Construct a scatterplot matrix of the chemical composition of Romano-British pottery given in Chapter 1 (Table 1.3), identifying each unit by its kiln number and showing the estimated bivariate density on each panel. What does the resulting diagram tell you?*
 
 # Exercício 2.6
 

@@ -1,0 +1,362 @@
+---
+title: "Exercícios - Capítulo 3"
+format: html
+editor: visual
+---
+
+O presente documento traz a relação de exercícios desenvolvidos para a disciplina de Métodos de Análise Multivariada do Programa de Pós-Graduação em Administração da UnB.
+
+**Aluno: Daniel do Prado Pagotto**
+
+Carregando os pacotes necessários. O pacote `HSAUR2` especificamente tem muitas das bases usadas nos exercícios.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+library(ggExtra)
+library(HSAUR2)
+library(psych)
+library(roperators)
+library(patchwork)
+
+```
+
+# Exercício 3.1
+
+*Construct the scatterplot of the heptathlon data showing the contours of the estimated bivariate density function on each panel. Is this graphic more useful than the unenhanced scatterplot matrix?*
+
+Primeiro vamos acessar os dados pré-carregados no pacote `HSAUR2`.
+
+```{r}
+
+heptathlon <- HSAUR2::heptathlon
+
+```
+
+
+Agora vamos criar o scatterplot
+
+```{r}
+
+plot31 <- function(a, b){
+  p <- heptathlon %>% 
+      ggplot(aes(x = a, y = b, label = rownames(heptathlon))) + 
+      geom_point() + 
+      geom_label() 
+
+  ggMarginal(p, type = "densigram")
+}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$highjump)
+```
+
+Outra alternativa é a função `scatterHist` do pacote `psych`.
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$highjump)
+
+```
+Vamos plotar as demais variáveis: 
+
+*Hurdles x Shot*
+
+```{r}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$shot)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$shot)
+
+```
+*Hurdles x Run 200m*
+
+```{r}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$run200m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$run200m)
+
+```
+
+*Hurdles x Longjump*
+
+```{r}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$longjump)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$longjump)
+
+```
+
+*Hurdles X Javelin* 
+
+```{r}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$javelin)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$javelin)
+
+```
+
+*Hurdles X Run 800m*
+
+```{r}
+
+plot31(a = heptathlon$hurdles, b = heptathlon$run800m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$hurdles, y = heptathlon$run800m)
+
+```
+
+*Highjump X Shot*
+
+```{r}
+
+plot31(a = heptathlon$highjump, b = heptathlon$shot)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$highjump, y = heptathlon$shot)
+
+```
+
+*Highjump X Run 200m* 
+
+```{r}
+
+plot31(a = heptathlon$highjump, b = heptathlon$run200m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$highjump, y = heptathlon$run200m)
+
+```
+
+*Highjump X Longjump*
+
+```{r}
+
+plot31(a = heptathlon$highjump, b = heptathlon$longjump)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$highjump, y = heptathlon$longjump)
+
+```
+
+*Highjump X Javelin*
+
+```{r}
+
+plot31(a = heptathlon$highjump, b = heptathlon$javelin)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$highjump, y = heptathlon$javelin)
+
+```
+
+*Highjump X Run 800m*
+
+```{r}
+
+plot31(a = heptathlon$highjump, b = heptathlon$run800m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$highjump, y = heptathlon$run800m)
+
+```
+
+*Shot X Run 200m*
+
+```{r}
+
+plot31(a = heptathlon$shot, b = heptathlon$run200m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$shot, y = heptathlon$run200m)
+
+```
+
+*Shot X Longjump*
+
+```{r}
+
+plot31(a = heptathlon$shot, b = heptathlon$longjump)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$shot, y = heptathlon$longjump)
+
+```
+
+*Shot X Javelin*
+
+```{r}
+
+plot31(a = heptathlon$shot, b = heptathlon$javelin)
+
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$shot, y = heptathlon$javelin)
+
+
+```
+
+*Shot X Run 800m*
+
+```{r}
+
+plot31(a = heptathlon$shot, b = heptathlon$javelin)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$shot, y = heptathlon$javelin)
+
+```
+
+*Run 200m X Longjump*
+
+```{r}
+
+plot31(a = heptathlon$run200m, b = heptathlon$longjump)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$run200m, y = heptathlon$longjump)
+
+```
+
+*Run 200m X Javelin* 
+
+```{r}
+
+plot31(a = heptathlon$run200m, b = heptathlon$longjump)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$run200m, y = heptathlon$longjump)
+
+```
+
+*Run 200m X Run 800m*
+
+```{r}
+
+plot31(a = heptathlon$run200m, b = heptathlon$run800m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$run200m, y = heptathlon$run800m)
+
+```
+
+*Longjump X Javelin* 
+
+```{r}
+
+plot31(a = heptathlon$longjump, b = heptathlon$javelin)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$longjump, y = heptathlon$javelin)
+
+```
+
+*Longjump X Run 800m* 
+
+```{r}
+
+plot31(a = heptathlon$longjump, b = heptathlon$run800m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$longjump, y = heptathlon$run800m)
+
+```
+
+*Javelin X Run 800m* 
+
+```{r}
+
+plot31(a = heptathlon$javelin, b = heptathlon$run800m)
+
+```
+
+
+```{r}
+
+scatterHist(x = heptathlon$javelin, y = heptathlon$run800m)
+
+```
