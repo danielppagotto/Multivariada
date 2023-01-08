@@ -17,6 +17,7 @@ library(tidyverse)
 library(HSAUR2)
 library(psych)
 library(factoextra)
+library(ggExtra)
 
 ```
 
@@ -387,7 +388,7 @@ grafico <- function(x, y){
 
 ```{r}
 
-grafico(temp, y = "temp") + ggtitle("SO2 e Temp")
+grafico(USairpollution$temp, y = "temp") + ggtitle("SO2 e Temp")
 
 ```
 
@@ -395,7 +396,7 @@ grafico(temp, y = "temp") + ggtitle("SO2 e Temp")
 
 ```{r}
 
-grafico(manu, y = "manu") + ggtitle("SO2 e Manu")
+grafico(USairpollution$manu, y = "manu") + ggtitle("SO2 e Manu")
 
 ```
 
@@ -403,7 +404,7 @@ grafico(manu, y = "manu") + ggtitle("SO2 e Manu")
 
 ```{r}
 
-grafico(popul, y = "Popul") + ggtitle("SO2 e Popul")
+grafico(USairpollution$popul, y = "Popul") + ggtitle("SO2 e Popul")
 
 ```
 
@@ -411,7 +412,7 @@ grafico(popul, y = "Popul") + ggtitle("SO2 e Popul")
 
 ```{r}
 
-grafico(wind, y = "Wind") + ggtitle("SO2 e Wind")
+grafico(USairpollution$wind, y = "Wind") + ggtitle("SO2 e Wind")
 
 ```
 
@@ -419,7 +420,7 @@ grafico(wind, y = "Wind") + ggtitle("SO2 e Wind")
 
 ```{r}
 
-grafico(precip, y = "Precip") + ggtitle("SO2 e Precip")
+grafico(USairpollution$precip, y = "Precip") + ggtitle("SO2 e Precip")
 
 ```
 
@@ -427,7 +428,7 @@ grafico(precip, y = "Precip") + ggtitle("SO2 e Precip")
 
 ```{r}
 
-grafico(predays, y = "Predays") + ggtitle("SO2 e Predays")
+grafico(USairpollution$predays, y = "Predays") + ggtitle("SO2 e Predays")
 
 ```
 
@@ -462,10 +463,27 @@ Agora vamos rodar a análise de componentes principais
 
 pca_33 <- princomp(cor_mat, cor = FALSE)
 
-
 summary(pca_33)
 
-factoextra::fviz_eig(pca_33)
+fviz_eig(pca_33)
 
 ```
 
+```{r}
+
+var <- get_pca_var(pca_33)
+
+var$coord
+
+```
+
+
+Observa-se que os dois primeiros componentes possuem variância acumulada de 81,1%.
+
+```{r}
+
+fviz_pca(pca_33)
+
+```
+
+Algumas variáveis possuem maior correlação entre si, como, por exemplo, comprimento da cabeça e largura da cabeça. A variável `left_finger_length` foi a única que demonstrou baixo peso no componente 1. Em contrapartida, demonstrou peso elevado sobre o componente 2.  

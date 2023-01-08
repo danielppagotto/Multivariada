@@ -122,11 +122,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Carregando os pacotes necessários. O pacote <code>HSAUR2</code> especificamente tem muitas das bases usadas nos exercícios.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HSAUR2)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(roperators)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HSAUR2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="exercício-3.1" class="level1">
 <h1>Exercício 3.1</h1>
@@ -419,6 +418,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="cap_3_files/figure-html/unnamed-chunk-88-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Pelos gráficos fica bem evidente o quanto que a competidora Launa (PNG) representa um outlier.</p>
+</section>
+<section id="exercício-3.2" class="level1">
+<h1>Exercício 3.2</h1>
+<p><em>Construct a diagram that shows the SO2 variable in the air pollution data plotted against each of the six explanatory variables, and in each of the scatterplots show the fitted linear regression and a fitted locally weighted regression. Does this diagram help in deciding on the most appropriate model for determining the variables most predictive of sulphur dioxide levels?</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>USairpollution <span class="ot">&lt;-</span> HSAUR2<span class="sc">::</span>USairpollution</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos plotar cada par de variáveis, por meio da função a seguir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>grafico <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  USairpollution <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> SO2)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">xlab</span>(y)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>SO2 e Temp</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>temp, <span class="at">y =</span> <span class="st">"temp"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-94-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>SO2 e Manu</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>manu, <span class="at">y =</span> <span class="st">"manu"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Manu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>SO2 e Popul</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>popul, <span class="at">y =</span> <span class="st">"Popul"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Popul"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-98-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>SO2 e Wind</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>wind, <span class="at">y =</span> <span class="st">"Wind"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Wind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-100-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>SO2 e Precip</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>precip, <span class="at">y =</span> <span class="st">"Precip"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Precip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><em>SO2 e Predays</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grafico</span>(USairpollution<span class="sc">$</span>predays, <span class="at">y =</span> <span class="st">"Predays"</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SO2 e Predays"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Sem haver qualquer tratamento de outliers, observa-se que algumas variáveis possuem maior ajuste à reta de regressão, sendo elas: temp, manu, popul, predays.</p>
+</section>
+<section id="exercício-3.3." class="level1">
+<h1>Exercício 3.3.</h1>
+<p><em>Find the principal components of the following correlation matrix given by MacDonnell (1902) from measurements of seven physical characteristics in each of 3000 convicted criminals:</em></p>
+<p>Primeiro, vamos armazenar a matriz de correlação no objeto <code>cor_mat</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>cor_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.736</span>, <span class="fl">0.800</span>, <span class="fl">0.661</span>, <span class="fl">0.345</span>, <span class="fl">0.183</span>, <span class="fl">0.340</span>,</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.402</span>, <span class="dv">1</span>, <span class="fl">0.797</span>, <span class="fl">0.759</span>, <span class="fl">0.363</span>, <span class="fl">0.206</span>, <span class="fl">0.339</span>,</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.396</span>, <span class="fl">0.618</span>, <span class="dv">1</span>, <span class="fl">0.846</span>, <span class="fl">0.289</span>, <span class="fl">0.135</span>, <span class="fl">0.305</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.301</span>, <span class="fl">0.150</span>, <span class="fl">0.321</span>, <span class="dv">1</span>, <span class="fl">0.321</span>, <span class="fl">0.150</span>, <span class="fl">0.301</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.305</span>, <span class="fl">0.135</span>, <span class="fl">0.289</span>, <span class="fl">0.846</span>, <span class="dv">1</span>, <span class="fl">0.618</span>, <span class="fl">0.396</span>,</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.339</span>, <span class="fl">0.206</span>, <span class="fl">0.363</span>, <span class="fl">0.759</span>, <span class="fl">0.797</span>, <span class="dv">1</span>, <span class="fl">0.402</span>,</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">0.340</span>, <span class="fl">0.183</span>, <span class="fl">0.345</span>, <span class="fl">0.661</span>, <span class="fl">0.800</span>, <span class="fl">0.763</span>, <span class="dv">1</span>),</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrow =</span> <span class="dv">7</span>, <span class="at">ncol =</span> <span class="dv">7</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cor_mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"head_length"</span>,<span class="st">"head_breadth"</span>,<span class="st">"face_breadth"</span>,</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"left_finger_length"</span>,<span class="st">"left_forearm_length"</span>,</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"left_foot_length"</span>,<span class="st">"height"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora vamos rodar a análise de componentes principais</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>pca_33 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(cor_mat, <span class="at">cor =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_33)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          Comp.1    Comp.2    Comp.3     Comp.4     Comp.5
+Standard deviation     0.5619820 0.2716570 0.1862723 0.18302033 0.11085290
+Proportion of Variance 0.6581919 0.1537976 0.0723110 0.06980821 0.02560955
+Cumulative Proportion  0.6581919 0.8119896 0.8843006 0.95410878 0.97971833
+                           Comp.6 Comp.7
+Standard deviation     0.09865020      0
+Proportion of Variance 0.02028167      0
+Cumulative Proportion  1.00000000      1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca_33)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">get_pca_var</span>(pca_33)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>var<span class="sc">$</span>coord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Dim.1       Dim.2       Dim.3        Dim.4         Dim.5
+[1,]  0.1289679960  0.10666197  0.15087896  0.052436620  0.0023204426
+[2,]  0.2820985729  0.12143769 -0.07722074  0.013579606 -0.0515947534
+[3,]  0.2443759992  0.07067187 -0.05364130 -0.003299678  0.0588057029
+[4,]  0.0007953977 -0.10912205 -0.01554852  0.007836547  0.0005647983
+[5,] -0.2449037429  0.06603609 -0.02166945  0.053819664 -0.0582391894
+[6,] -0.2876009851  0.12098015 -0.04444293  0.059025682  0.0523777211
+[7,] -0.1311447720  0.10851059  0.02014904 -0.155272502 -0.0052253745
+            Dim.6 Dim.7
+[1,]  0.001811117     0
+[2,] -0.034826977     0
+[3,]  0.060400704     0
+[4,]  0.003649505     0
+[5,]  0.060101933     0
+[6,] -0.035013551     0
+[7,]  0.003988446     0</code></pre>
+</div>
+</div>
+<p>Observa-se que os dois primeiros componentes possuem variância acumulada de 81,1%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca</span>(pca_33)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cap_3_files/figure-html/unnamed-chunk-112-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Algumas variáveis possuem maior correlação entre si, como, por exemplo, comprimento da cabeça e largura da cabeça. A variável <code>left_finger_length</code> foi a única que demonstrou baixo peso no componente 1. Em contrapartida, demonstrou peso elevado sobre o componente 2.</p>
 </section>
 
 </main>
