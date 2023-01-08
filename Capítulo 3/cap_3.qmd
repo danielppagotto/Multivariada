@@ -14,11 +14,9 @@ Carregando os pacotes necessários. O pacote `HSAUR2` especificamente tem muitas
 #| warning: false
 
 library(tidyverse)
-library(ggExtra)
 library(HSAUR2)
 library(psych)
-library(roperators)
-library(patchwork)
+library(factoextra)
 
 ```
 
@@ -360,3 +358,114 @@ plot31(a = heptathlon$javelin, b = heptathlon$run800m)
 scatterHist(x = heptathlon$javelin, y = heptathlon$run800m)
 
 ```
+
+Pelos gráficos fica bem evidente o quanto que a competidora Launa (PNG) representa um outlier. 
+
+# Exercício 3.2
+
+*Construct a diagram that shows the SO2 variable in the air pollution data plotted against each of the six explanatory variables, and in each of the scatterplots show the fitted linear regression and a fitted locally weighted regression. Does this diagram help in deciding on the most appropriate model for determining the variables most predictive of sulphur dioxide levels?*
+
+```{r}
+
+USairpollution <- HSAUR2::USairpollution
+
+```
+
+Vamos plotar cada par de variáveis, por meio da função a seguir. 
+
+```{r}
+
+grafico <- function(x, y){
+  USairpollution %>% 
+    ggplot(aes(x = x, y = SO2)) + geom_point() +
+    geom_smooth(method = 'lm', se = FALSE) + theme_minimal() + xlab(y)
+}
+
+```
+
+*SO2 e Temp* 
+
+```{r}
+
+grafico(temp, y = "temp") + ggtitle("SO2 e Temp")
+
+```
+
+*SO2 e Manu*
+
+```{r}
+
+grafico(manu, y = "manu") + ggtitle("SO2 e Manu")
+
+```
+
+*SO2 e Popul*
+
+```{r}
+
+grafico(popul, y = "Popul") + ggtitle("SO2 e Popul")
+
+```
+
+*SO2 e Wind*
+
+```{r}
+
+grafico(wind, y = "Wind") + ggtitle("SO2 e Wind")
+
+```
+
+*SO2 e Precip* 
+
+```{r}
+
+grafico(precip, y = "Precip") + ggtitle("SO2 e Precip")
+
+```
+
+*SO2 e Predays*
+
+```{r}
+
+grafico(predays, y = "Predays") + ggtitle("SO2 e Predays")
+
+```
+
+Sem haver qualquer tratamento de outliers, observa-se que algumas variáveis possuem maior ajuste à reta de regressão, sendo elas: temp, manu, popul, predays. 
+
+# Exercício 3.3. 
+
+*Find the principal components of the following correlation matrix given by MacDonnell (1902) from measurements of seven physical characteristics in each of 3000 convicted criminals:*
+
+Primeiro, vamos armazenar a matriz de correlação no objeto `cor_mat`. 
+
+```{r}
+
+cor_mat <- matrix(c(1, 0.736, 0.800, 0.661, 0.345, 0.183, 0.340,
+                    0.402, 1, 0.797, 0.759, 0.363, 0.206, 0.339,
+                    0.396, 0.618, 1, 0.846, 0.289, 0.135, 0.305,
+                    0.301, 0.150, 0.321, 1, 0.321, 0.150, 0.301,
+                    0.305, 0.135, 0.289, 0.846, 1, 0.618, 0.396,
+                    0.339, 0.206, 0.363, 0.759, 0.797, 1, 0.402,
+                    0.340, 0.183, 0.345, 0.661, 0.800, 0.763, 1),
+                  nrow = 7, ncol = 7, byrow = TRUE)
+
+rownames(cor_mat) <- c("head_length","head_breadth","face_breadth",
+                       "left_finger_length","left_forearm_length",
+                       "left_foot_length","height")
+
+```
+
+Agora vamos rodar a análise de componentes principais
+
+```{r}
+
+pca_33 <- princomp(cor_mat, cor = FALSE)
+
+
+summary(pca_33)
+
+factoextra::fviz_eig(pca_33)
+
+```
+
