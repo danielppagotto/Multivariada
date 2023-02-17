@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estudo de caso</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="estudo_de_caso_files/libs/clipboard/clipboard.min.js"></script>
+<script src="estudo_de_caso_files/libs/quarto-html/quarto.js"></script>
+<script src="estudo_de_caso_files/libs/quarto-html/popper.min.js"></script>
+<script src="estudo_de_caso_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="estudo_de_caso_files/libs/quarto-html/anchor.min.js"></script>
+<link href="estudo_de_caso_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="estudo_de_caso_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="estudo_de_caso_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="estudo_de_caso_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="estudo_de_caso_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="estudo_de_caso_files/libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="estudo_de_caso_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="estudo_de_caso_files/libs/datatables-binding-0.25/datatables.js"></script>
+<script src="estudo_de_caso_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="estudo_de_caso_files/libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="estudo_de_caso_files/libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="estudo_de_caso_files/libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="estudo_de_caso_files/libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="estudo_de_caso_files/libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Estudo de caso</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>O presente documento tem como objetivo reproduzir e aprimorar análises realizadas no trabalho <em>Reciprocity VS. Commitment in Bank Marketing Strategies</em> como forma de estudo de caso da disciplina de Análise Multivariada do Programa de Pós-Graduação em Administração da Universidade de Brasília (UnB).</p>
+<p>Trabalho desenvolvido por Daniel Pagotto (21/0004525) e Andre Bolzon (22/0001197).</p>
+<p>Primeiramente, vamos carregar os pacotes necessários para as análises</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em sequência, vamos adicionar a base que será empregada nas análises e vamos inspecionar os dados.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 413
+Columns: 16
+$ r1 &lt;dbl&gt; 3, 2, 3, 1, 0, 0, 0, 2, 1, 2, 0, 0, 1, 3, 1, 2, 2, 1, 0, 1, 1, 0, 2…
+$ r2 &lt;dbl&gt; 3, 3, 2, 1, 1, 0, 1, 1, 3, 3, 0, 2, 3, 3, 3, 3, 2, 3, 3, 0, 3, 0, 3…
+$ r3 &lt;dbl&gt; 0, 1, 2, 1, 0, 0, 0, 0, 2, 2, 0, 3, 2, 3, 3, 1, 0, 1, 1, 0, 2, 1, 3…
+$ r4 &lt;dbl&gt; 1, 2, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 0, 1, 1, 0, 1, 0, 2…
+$ r5 &lt;dbl&gt; 1, 1, 1, 2, 0, 1, 0, 0, 2, 1, 0, 1, 2, 3, 2, 1, 1, 1, 0, 0, 2, 0, 2…
+$ r6 &lt;dbl&gt; 2, 3, 2, 1, 1, 0, 2, 2, 2, 1, 0, 1, 1, 3, 2, 2, 1, 1, 1, 2, 1, 0, 2…
+$ r7 &lt;dbl&gt; 3, 3, 2, 1, 2, 0, 0, 1, 1, 1, 0, 2, 3, 3, 2, 1, 0, 3, 1, 0, 2, 1, 2…
+$ r8 &lt;dbl&gt; 2, 3, 3, 1, 0, 0, 0, 2, 2, 1, 0, 1, 2, 3, 2, 1, 0, 2, 0, 0, 2, 1, 2…
+$ c1 &lt;dbl&gt; 3, 3, 2, 2, 2, 2, 2, 3, 3, 1, 1, 0, 2, 2, 2, 2, 2, 2, 0, 3, 1, 2, 2…
+$ c2 &lt;dbl&gt; 3, 3, 2, 1, 1, 0, 3, 1, 1, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 0, 2…
+$ c3 &lt;dbl&gt; 3, 2, 3, 1, 1, 3, 0, 0, 1, 1, 0, 2, 2, 3, 2, 1, 1, 0, 0, 0, 1, 0, 2…
+$ c4 &lt;dbl&gt; 3, 3, 2, 2, 0, 2, 3, 3, 2, 3, 2, 0, 1, 2, 3, 3, 3, 2, 1, 0, 1, 1, 2…
+$ c5 &lt;dbl&gt; 3, 2, 1, 1, 0, 1, 2, 2, 0, 1, 1, 1, 2, 2, 2, 3, 3, 2, 1, 3, 1, 0, 2…
+$ c6 &lt;dbl&gt; 3, 3, 3, 1, 1, 3, 1, 1, 2, 3, 1, 0, 1, 1, 2, 2, 2, 2, 0, 1, 1, 1, 2…
+$ c7 &lt;dbl&gt; 2, 3, 2, 1, 2, 1, 3, 3, 1, 3, 1, 0, 3, 3, 2, 3, 0, 1, 1, 2, 1, 2, 2…
+$ c8 &lt;dbl&gt; 3, 2, 0, 2, 0, 2, 2, 1, 1, 1, 0, 1, 2, 2, 2, 2, 0, 0, 0, 2, 1, 0, 2…</code></pre>
+</div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>Vamos verificar uma análise descritiva dos dados. Temos 100% de completude dos dados, com médias variando de 0.93 até 1.93. O uso do presente pacote pode representar uma melhoria em relação ao script original, uma vez que a função skim fornece média, desvio-padrão, percentis e histograma. Incluímos, manualmente, a variância também.</p>
+<p><em>Tal procedimento pode representar uma melhoria em relação ao script original.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>descritiva <span class="ot">&lt;-</span> skimr<span class="sc">::</span><span class="fu">skim</span>(dd)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>descritiva2 <span class="ot">&lt;-</span> descritiva <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">mutate</span>(<span class="at">var =</span> numeric.sd<span class="sc">**</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                <span class="fu">select</span>(skim_variable, n_missing, complete_rate,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                       numeric.mean, numeric.sd, var, <span class="fu">everything</span>())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(descritiva2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b08936a061f83d0d20dd" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b08936a061f83d0d20dd">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["r1","r2","r3","r4","r5","r6","r7","r8","c1","c2","c3","c4","c5","c6","c7","c8"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1.1864406779661,1.72397094430993,1.1089588377724,0.932203389830508,1.02663438256659,1.30992736077482,1.69491525423729,1.3317191283293,1.93946731234867,1.68765133171913,1.41646489104116,1.78450363196126,1.23002421307506,1.65133171912833,1.64648910411622,1.53995157384988],[0.90124518473137,0.985985150801126,0.929684219669001,0.886935510231082,0.876759011115512,0.983269385281127,0.918471876249305,1.01152878556491,0.841125405968008,0.871204697937387,1.00286971578909,0.977689001970543,1.01821719762938,0.838676383707412,0.908946110636481,0.963648506588973],[0.812242883001481,0.97216671760032,0.864312748301559,0.786654599308869,0.768706363572251,0.966818684031124,0.843590587460918,1.02319048402642,0.707491948564846,0.758997625708174,1.00574766684689,0.955875784574156,1.03676626154823,0.703378076588542,0.826183032041186,0.928618444251158],["numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1],[1,2,1,1,1,1,2,1,2,2,1,2,1,2,2,2],[2,3,2,1,1,2,2,2,3,2,2,3,2,2,2,2],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],["▅▇▁▅▂","▃▇▁▇▆","▅▇▁▃▂","▇▇▁▃▁","▅▇▁▃▁","▅▇▁▅▃","▂▆▁▇▃","▅▇▁▅▃","▁▅▁▇▅","▂▅▁▇▃","▆▇▁▇▅","▂▅▁▇▅","▇▇▁▆▃","▂▆▁▇▃","▂▆▁▇▃","▃▇▁▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>skim_variable<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>numeric.mean<\/th>\n      <th>numeric.sd<\/th>\n      <th>var<\/th>\n      <th>skim_type<\/th>\n      <th>numeric.p0<\/th>\n      <th>numeric.p25<\/th>\n      <th>numeric.p50<\/th>\n      <th>numeric.p75<\/th>\n      <th>numeric.p100<\/th>\n      <th>numeric.hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,8,9,10,11,12]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>No script original, foi construída uma matriz de correlação conforme os códigos abaixo. Testamos outras formas de visualização por meio do pacote <code>GGally</code>, função <code>ggpairs</code>, pois esta permite visualizar os coeficientes de correlação. No entanto, a visualização não ficou satisfatória. Portanto, sugere-se a visualização original.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">cor</span>(dd)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(Sigma, <span class="at">method=</span><span class="st">"color"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="estudo_de_caso_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O gráfico abaixo indica a retenção de dois componentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>res.pca    <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(dd, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>scree      <span class="ot">&lt;-</span> <span class="fu">get_eigenvalue</span>(res.pca)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>scree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       eigenvalue variance.percent cumulative.variance.percent
+Dim.1   4.6467436        29.042147                    29.04215
+Dim.2   1.5564229         9.727643                    38.76979
+Dim.3   1.2187806         7.617379                    46.38717
+Dim.4   1.0418847         6.511779                    52.89895
+Dim.5   0.9480910         5.925569                    58.82452
+Dim.6   0.8182211         5.113882                    63.93840
+Dim.7   0.7598904         4.749315                    68.68771
+Dim.8   0.7168857         4.480536                    73.16825
+Dim.9   0.7077294         4.423309                    77.59156
+Dim.10  0.6428584         4.017865                    81.60942
+Dim.11  0.5886578         3.679111                    85.28853
+Dim.12  0.5741313         3.588321                    88.87686
+Dim.13  0.4926110         3.078819                    91.95567
+Dim.14  0.4755628         2.972267                    94.92794
+Dim.15  0.4228252         2.642657                    97.57060
+Dim.16  0.3887043         2.429402                   100.00000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scree.plot <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(res.pca, <span class="at">addlabels=</span><span class="cn">TRUE</span>,<span class="at">choice =</span> <span class="st">"eigenvalue"</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"components"</span>, <span class="at">y =</span> <span class="st">"eigenvalue"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>dim.size   <span class="ot">&lt;-</span> <span class="fu">dim</span>(scree[<span class="dv">2</span>])[<span class="dv">1</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df         <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>dim.size,<span class="at">y=</span><span class="fu">cumsum</span>(scree[<span class="dv">2</span>])<span class="sc">/</span><span class="dv">20</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scree.plot1 <span class="ot">&lt;-</span> scree.plot <span class="sc">+</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">data=</span>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,], <span class="fu">aes</span>(x, variance.percent), <span class="at">size=</span><span class="dv">2</span>, <span class="at">color=</span><span class="st">"#00AFBB"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>(<span class="at">data=</span>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,], <span class="fu">aes</span>(x, variance.percent), <span class="at">color=</span><span class="st">"#00AFBB"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span> . <span class="sc">*</span> <span class="dv">20</span>, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">name =</span> <span class="st">"cumulative % of variance"</span>) )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>scree.plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="estudo_de_caso_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O gráfico abaixo representa os dois componentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(res.pca,<span class="at">repel =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"component 1"</span>, <span class="at">y =</span> <span class="st">"component 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 2 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="estudo_de_caso_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Os blocos de código abaixo monstram a composição dos componentes por variável</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>res.var          <span class="ot">&lt;-</span> <span class="fu">get_pca_var</span>(res.pca)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out.v <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(res.var<span class="sc">$</span>coord[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out.v </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Dim.1       Dim.2
+r1 -0.6127962  0.08814676
+r2 -0.6417174  0.23890824
+r3 -0.6624812  0.33502068
+r4 -0.6772167  0.20334982
+r5 -0.5838582  0.21190027
+r6 -0.6616317  0.19669604
+r7 -0.5281015  0.17521913
+r8 -0.6395006  0.24681294
+c1 -0.3633143 -0.58840678
+c2 -0.4730224 -0.31447883
+c3 -0.4820895 -0.17801677
+c4 -0.3003514 -0.57234584
+c5 -0.5272845 -0.06419475
+c6 -0.4533627 -0.21211888
+c7 -0.4405914 -0.43695815
+c8 -0.3733150 -0.34400503</code></pre>
+</div>
+</div>
+<p>De acordo com os valores dos componentes, observa-se que os slogans associados a compromisso possuem maior aceitação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(dd)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>c.index <span class="ot">&lt;-</span> c1<span class="sc">+</span>c2<span class="sc">+</span>c3<span class="sc">+</span>c4<span class="sc">+</span>c5<span class="sc">+</span>c6<span class="sc">+</span>c7<span class="sc">+</span>c8</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>r.index <span class="ot">&lt;-</span> r1<span class="sc">+</span>r2<span class="sc">+</span>r3<span class="sc">+</span>r4<span class="sc">+</span>r5<span class="sc">+</span>r6<span class="sc">+</span>r7<span class="sc">+</span>r8</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(dd)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>c.I <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">index =</span> c.index,<span class="at">rule=</span><span class="fu">rep</span>(<span class="st">"commitment"</span>,<span class="fu">length</span>(c.index)))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>r.I <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">index =</span> r.index,<span class="at">rule=</span><span class="fu">rep</span>(<span class="st">"reciprocity"</span>,<span class="fu">length</span>(c.index)))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>figure <span class="ot">&lt;-</span> <span class="fu">rbind</span>(c.I,r.I)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>figure, <span class="fu">aes</span>(<span class="at">x=</span>index, <span class="at">fill=</span>rule)) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">binwidth=</span><span class="fl">0.2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">""</span>, <span class="at">x =</span> <span class="st">"overall index"</span>, <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_grey</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_density(binwidth = 0.2, alpha = 0.5, position = "identity"):
+Ignoring unknown parameters: `binwidth`</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="estudo_de_caso_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
